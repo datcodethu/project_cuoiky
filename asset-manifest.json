@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/TimeWise/static/css/main.f855e6bc.css",
-    "main.js": "/TimeWise/static/js/main.d58b8d62.js",
-    "static/js/453.7a0f4abf.chunk.js": "/TimeWise/static/js/453.7a0f4abf.chunk.js",
-    "index.html": "/TimeWise/index.html",
-    "main.f855e6bc.css.map": "/TimeWise/static/css/main.f855e6bc.css.map",
-    "main.d58b8d62.js.map": "/TimeWise/static/js/main.d58b8d62.js.map",
-    "453.7a0f4abf.chunk.js.map": "/TimeWise/static/js/453.7a0f4abf.chunk.js.map"
+    "main.css": "/project_cuoiky/static/css/main.f855e6bc.css",
+    "main.js": "/project_cuoiky/static/js/main.a7095773.js",
+    "static/js/453.7a0f4abf.chunk.js": "/project_cuoiky/static/js/453.7a0f4abf.chunk.js",
+    "index.html": "/project_cuoiky/index.html",
+    "main.f855e6bc.css.map": "/project_cuoiky/static/css/main.f855e6bc.css.map",
+    "main.a7095773.js.map": "/project_cuoiky/static/js/main.a7095773.js.map",
+    "453.7a0f4abf.chunk.js.map": "/project_cuoiky/static/js/453.7a0f4abf.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f855e6bc.css",
-    "static/js/main.d58b8d62.js"
+    "static/js/main.a7095773.js"
   ]
 }

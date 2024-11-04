@@ -1,18 +1,23 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Nhập useNavigate
+import { useNavigate } from "react-router-dom";
 import "../App.css";
 import avatar from "../images/avatar.jpg";
 
-function Login() {
+function SignUp() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate(); // Khởi tạo useNavigate
+  const [reenteredPassword, setReenteredPassword] = useState(""); // State cho mật khẩu xác nhận
+  const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleRegister = (e) => {
     e.preventDefault();
-    if (username && password) {
-      console.log("Đăng nhập với:", username, password);
-      navigate("/"); // Chuyển hướng đến trang Home
+    if (username && password && reenteredPassword) {
+      if (password === reenteredPassword) {
+        console.log("Đăng ký với:", username, password);
+        navigate("/"); // Chuyển hướng đến trang Home hoặc trang xác nhận
+      } else {
+        alert("Mật khẩu không khớp. Vui lòng nhập lại.");
+      }
     } else {
       alert("Vui lòng nhập đầy đủ thông tin.");
     }
@@ -25,7 +30,7 @@ function Login() {
           <div className="box-avatar">
             <img src={avatar} alt="Avatar" />
           </div>
-          <form className="box-form" onSubmit={handleLogin}>
+          <form className="box-form" onSubmit={handleRegister}>
             <div className="box-email-password">
               <label>Email or Phone Number</label>
               <input
@@ -44,12 +49,17 @@ function Login() {
                 required
               />
             </div>
-            <div className="for-pass">
-              <a href="#">Forgot Password</a>
-              <a href="#">Sign In</a>
+            <div className="box-email-password">
+              <label>Re-enter Password</label>
+              <input
+                type="password"
+                value={reenteredPassword}
+                onChange={(e) => setReenteredPassword(e.target.value)}
+                required
+              />
             </div>
             <div className="box-button-login">
-              <button type="submit">Đăng Nhập</button>
+              <button type="submit">Đăng Ký</button>
             </div>
           </form>
         </div>
@@ -58,4 +68,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default SignUp;

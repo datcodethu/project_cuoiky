@@ -1,20 +1,41 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Nhập useNavigate
+import { useNavigate } from "react-router-dom";
 import "../App.css";
 import avatar from "../images/avatar.jpg";
+import axios from "axios";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate(); // Khởi tạo useNavigate
+  const [error, setError] = useState(""); // Trạng thái lưu lỗi
+  const [loading, setLoading] = useState(false); // Trạng thái loading
+  const navigate = useNavigate();
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    if (username && password) {
-      console.log("Đăng nhập với:", username, password);
-      navigate("/"); // Chuyển hướng đến trang Home
-    } else {
-      alert("Vui lòng nhập đầy đủ thông tin.");
+  const handleLogin = async (e) => {
+    e.preventDefault(); // Ngăn chặn hành vi mặc định của form
+    setLoading(true); // Bắt đầu loading
+    setError(""); // Xóa lỗi trước đó
+
+    try {
+      const response = await axios.post("http://localhost:5000/api/login", {
+        username,
+        password,
+      });
+      console.log(response.data); // In ra dữ liệu phản hồi từ server
+      if (response.status === 200) {
+        navigate("/"); // Chuyển hướng tới trang Home
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        setError("Sai tên đăng nhập hoặc mật khẩu!");
+        setUsername("");
+        setPassword("");
+      } else {
+        setError("Lỗi máy chủ! Vui lòng thử lại sau.");
+        navigate("/sorry"); // Chuyển hướng tới trang Sorry nếu lỗi server
+      }
+    } finally {
+      setLoading(false); // Kết thúc loading
     }
   };
 
@@ -44,12 +65,16 @@ function Login() {
                 required
               />
             </div>
+            {error && <p className="error-message">{error}</p>}{" "}
+            {/* Hiển thị lỗi */}
             <div className="for-pass">
               <a href="#">Forgot Password</a>
               <a href="#">Sign In</a>
             </div>
             <div className="box-button-login">
-              <button type="submit">Đăng Nhập</button>
+              <button type="submit" disabled={loading}>
+                {loading ? "Đang xử lý..." : "Đăng Nhập"}
+              </button>
             </div>
           </form>
         </div>

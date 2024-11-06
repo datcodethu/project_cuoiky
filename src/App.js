@@ -3,19 +3,12 @@ import "./App.css";
 import Home from "./Components/Home";
 import Login from "./Components/Login";
 import SingIn from "./Components/SingIn";
+import Des from "./Components/Des";
 function App() {
   function Cart() {
     return (
       <div>
         <h2>CHUA CODE CART</h2>
-      </div>
-    );
-  }
-
-  function Des() {
-    return (
-      <div>
-        <h2>CHUA CODE DES</h2>
       </div>
     );
   }
@@ -47,7 +40,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/Cart" element={<Cart />} />
           <Route path="/Login" element={<Login />} />
-          <Route path="/Des" element={<Des />} />
+          <Route path="/des/:id" element={<Des />} />
           <Route path="/SingIn" element={<SingIn />} />
         </Routes>
       </div>

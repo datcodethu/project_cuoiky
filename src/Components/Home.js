@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import '../App.css'
 function Home() {
   const products = [
     {
@@ -92,20 +93,17 @@ function Home() {
   const filteredProducts = products.filter((product) =>
     product.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
   return (
     <div className="Home">
       <header className="header">
         <div className="header_info">
           <h1>NHÓM LỤM</h1>
-          <h2>Trang wed bán hàng online uy tín </h2>
+          <h2>Trang web bán hàng online uy tín</h2>
           <p>Chúc anh chị em 8386</p>
           <div className="header_button">
-            <Link to="/Login" className="login">
-              LOGIN
-            </Link>
-            <Link to="/SingIn" className="login">
-              SIGN IN
-            </Link>
+            <Link to="/Login" className="login">LOGIN</Link>
+            <Link to="/SignIn" className="login">SIGN IN</Link>
           </div>
         </div>
       </header>
@@ -119,26 +117,24 @@ function Home() {
             <input
               onChange={(e) => setSearchTerm(e.target.value)}
               className="search_in"
-            ></input>
-            <input
-              type="submit"
               placeholder="Search"
-              className="search_sub"
-            ></input>
+            />
+            <input type="submit" value="Search" className="search_sub" />
           </div>
         </div>
         <div className="main_products">
           {filteredProducts.length > 0 ? (
-            products.map((product) => (
+            filteredProducts.map((product) => (
               <div key={product.id} className="main_product">
                 <div
-                  style={{ backgroundImage: `${product.image}` }}
+                  style={{ backgroundImage: `url(${product.image})` }}
                   className="product"
                 >
                   <div className="product_min">
                     <h2>{product.name}</h2>
                     <p>{product.des}</p>
-                    <Link to="/Des" className="main_cart">
+                    {/* Use dynamic Link with product ID */}
+                    <Link to={`/Des/${product.id}`} className="main_cart">
                       ${product.price}
                     </Link>
                   </div>
@@ -154,4 +150,5 @@ function Home() {
     </div>
   );
 }
+
 export default Home;

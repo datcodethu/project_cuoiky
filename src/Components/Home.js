@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import '../App.css'
+import "../App.css";
 function Home() {
   const products = [
     {
@@ -102,8 +102,12 @@ function Home() {
           <h2>Trang web bán hàng online uy tín</h2>
           <p>Chúc anh chị em 8386</p>
           <div className="header_button">
-            <Link to="/Login" className="login">LOGIN</Link>
-            <Link to="/SignIn" className="login">SIGN IN</Link>
+            <Link to="/Login" className="login">
+              LOGIN
+            </Link>
+            <Link to="/SingIn" className="login">
+              SIGN IN
+            </Link>
           </div>
         </div>
       </header>

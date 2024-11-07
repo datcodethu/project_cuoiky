@@ -1,5 +1,5 @@
 import React from "react";
-import product1 from "../images/1.jpg"; // Đường dẫn hình ảnh
+import product1 from "../images/Laptop_Apple_Macbook_VHC.png"; // Đường dẫn hình ảnh
 import { useNavigate } from "react-router-dom";
 function ProductDetail() {
   const navitgate = useNavigate("");

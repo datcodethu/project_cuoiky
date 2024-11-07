@@ -1,95 +1,28 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../App.css";
 function Home() {
-  const products = [
-    {
-      id: 1,
-      name: "IP 16",
-      price: 1500,
-      des: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      image: "img",
-    },
-    {
-      id: 2,
-      name: "IP 15",
-      price: 500,
-      des: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      image: "img",
-    },
-    {
-      id: 3,
-      name: "IP 15",
-      price: 1000,
-      des: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      image: "img",
-    },
-    {
-      id: 4,
-      name: "IP 15",
-      price: 1200,
-      des: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      image: "img",
-    },
-    {
-      id: 5,
-      name: "IP 15",
-      price: 1234,
-      des: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      image: "img",
-    },
-    {
-      id: 6,
-      name: "IP 15",
-      price: 1242,
-      des: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      image: "img",
-    },
-    {
-      id: 7,
-      name: "IP 15",
-      price: 1098,
-      des: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      image: "img",
-    },
-    {
-      id: 7,
-      name: "IP 15",
-      price: 1098,
-      des: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      image: "img",
-    },
-    {
-      id: 7,
-      name: "IP 15",
-      price: 1098,
-      des: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      image: "img",
-    },
-    {
-      id: 7,
-      name: "IP 15",
-      price: 1098,
-      des: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      image: "img",
-    },
-    {
-      id: 7,
-      name: "IP 15",
-      price: 1098,
-      des: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      image: "img",
-    },
-    {
-      id: 8,
-      name: "IP 15",
-      price: 1224,
-      des: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      image: "img",
-    },
-  ];
+  const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
+  // Gọi API để lấy sản phẩm khi component được tải
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch(
+          "https://672c05c31600dda5a9f70d59.mockapi.io/datit/product"
+        );
+        const data = await response.json();
+        setProducts(data); // Lưu sản phẩm vào state
+      } catch (error) {
+        console.error("Lỗi khi lấy sản phẩm:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  // Lọc sản phẩm theo từ khóa tìm kiếm
   const filteredProducts = products.filter((product) =>
     product.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -105,7 +38,7 @@ function Home() {
             <Link to="/Login" className="login">
               LOGIN
             </Link>
-            <Link to="/SingIn" className="login">
+            <Link to="/SignIn" className="login">
               SIGN IN
             </Link>
           </div>
@@ -129,14 +62,15 @@ function Home() {
         <div className="main_products">
           {filteredProducts.length > 0 ? (
             filteredProducts.map((product) => (
-              <div key={product.id} className="main_product">
-                <div
-                  style={{ backgroundImage: `url(${product.image})` }}
-                  className="product"
-                >
+              <div
+                key={product.id}
+                style={{ backgroundImage: `url(${product.avatar})` }}
+                className="main_product"
+              >
+                <div className="product">
                   <div className="product_min">
                     <h2>{product.name}</h2>
-                    <p>{product.des}</p>
+                    <p>{product.des}s</p>
                     {/* Use dynamic Link with product ID */}
                     <Link to={`/Des/${product.id}`} className="main_cart">
                       ${product.price}

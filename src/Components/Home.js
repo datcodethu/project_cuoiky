@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "../App.css";
+
 function Home() {
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -12,8 +13,13 @@ function Home() {
         const response = await fetch(
           "https://672c05c31600dda5a9f70d59.mockapi.io/datit/product"
         );
-        const data = await response.json();
-        setProducts(data); // Lưu sản phẩm vào state
+        let data = await response.json();
+
+        // Trộn danh sách sản phẩm ngẫu nhiên
+        data = data.sort(() => 0.5 - Math.random());
+
+        // Lấy 12 sản phẩm đầu tiên
+        setProducts(data.slice(0, 12));
       } catch (error) {
         console.error("Lỗi khi lấy sản phẩm:", error);
       }
@@ -70,8 +76,7 @@ function Home() {
                 <div className="product">
                   <div className="product_min">
                     <h2>{product.name}</h2>
-                    <p>{product.des}s</p>
-                    {/* Use dynamic Link with product ID */}
+                    <p>{product.des}</p>
                     <Link to={`/Des/${product.id}`} className="main_cart">
                       ${product.price}
                     </Link>

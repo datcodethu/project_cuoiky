@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import "./App.css";
 import Home from "./Components/Home";
 import Login from "./Components/Login";
-import SingIn from "./Components/SingIn";
+import SignUp from "./Components/SingIn";
 import Des from "./Components/Des";
 function App() {
   function Cart() {
@@ -41,7 +41,7 @@ function App() {
           <Route path="/Cart" element={<Cart />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/des/:id" element={<Des />} />
-          <Route path="/SingIn" element={<SingIn />} />
+          <Route path="/SignIn" element={<SignUp />} />
         </Routes>
       </div>
     </Router>

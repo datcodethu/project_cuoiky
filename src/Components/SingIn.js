@@ -82,7 +82,7 @@ function SignUp() {
             {/* Hiển thị lỗi */}
             <div className="box-button-login">
               <button type="submit" disabled={loading}>
-                {loading ? "Đang xử lý..." : "Đăng Ký"}
+                {loading ? "Đang xử lý..." : "Sign in"}
               </button>
             </div>
           </form>

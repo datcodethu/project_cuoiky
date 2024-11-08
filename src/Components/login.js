@@ -72,8 +72,9 @@ function Login() {
               <a href="#">Sign In</a>
             </div>
             <div className="box-button-login">
-              <button type="submit" disabled={loading}>
-                {loading ? "Đang xử lý..." : "Đăng Nhập"}
+              <button 
+              type="submit" disabled={loading}>
+                {loading ? "Đang xử lý..." : "LOGIN"}
               </button>
             </div>
           </form>

@@ -79,6 +79,7 @@ function ProductDetail() {
           <button className="buy-now">BUY NOW</button>
         </div>
       </div>
+      <footer className="footer"></footer>
     </div>
   );
 }

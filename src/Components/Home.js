@@ -6,19 +6,16 @@ function Home() {
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Gọi API để lấy sản phẩm khi component được tải
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "https://672c05c31600dda5a9f70d59.mockapi.io/datit/product"
+          "https://672d7fa3fd897971564299a4.mockapi.io/product"
         );
         let data = await response.json();
 
-        // Trộn danh sách sản phẩm ngẫu nhiên
         data = data.sort(() => 0.5 - Math.random());
 
-        // Lấy 12 sản phẩm đầu tiên
         setProducts(data.slice(0, 12));
       } catch (error) {
         console.error("Lỗi khi lấy sản phẩm:", error);
@@ -70,7 +67,10 @@ function Home() {
             filteredProducts.map((product) => (
               <div
                 key={product.id}
-                style={{ backgroundImage: `url(${product.avatar})` }}
+                style={{ backgroundImage: `url(${product.avatar})`,
+                         backgroundSize : '200px 200px',
+                         backgroundRepeat : 'no-repeat'                   
+                }}
                 className="main_product"
               >
                 <div className="product">
